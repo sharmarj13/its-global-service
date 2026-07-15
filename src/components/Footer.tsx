@@ -19,22 +19,6 @@ interface FooterProps {
 }
 
 export default function Footer({ onFAQScroll }: FooterProps) {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const faqs = [
-    {
-      q: "What is your package cancellation policy?",
-      a: "Flights and hotel packages follow the policy of our third-party provider aggregators. Cab cancellations follow our internal flat-rate cancellation guidelines.",
-    },
-    {
-      q: "How does the AI Itinerary planner function?",
-      a: "Our system takes your destination, travel interests, and days to outline suggested timelines. You can easily click Save to add the trip itinerary directly to your profile.",
-    },
-    {
-      q: "Can I coordinate multiple booking rooms?",
-      a: "Yes, our system accommodates multi-room reservations and custom group passenger details during the checkout flow.",
-    },
-  ];
 
   return (
     <footer className="mt-24 border-t border-slate-900 bg-slate-950 pt-16 pb-8 px-6 text-slate-400 relative overflow-hidden">
@@ -79,27 +63,23 @@ export default function Footer({ onFAQScroll }: FooterProps) {
           </ul>
         </div>
 
-        {/* Column 3: FAQ Layer Accordion */}
-        <div id="faq-section" className="space-y-4 md:col-span-1">
-          <h4 className="font-extrabold text-xs uppercase text-white tracking-wider">FAQs Help Section</h4>
-          <div className="space-y-2.5">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="border-b border-slate-900 pb-2.5">
-                <button
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full text-left py-1 text-slate-300 hover:text-white font-bold text-xs flex justify-between items-center transition-colors"
-                >
-                  <span className="truncate pr-2">{faq.q}</span>
-                  <FaChevronDown className={`text-[8px] text-cyan-400 transition-transform duration-350 ${openFaq === idx ? "rotate-180" : ""}`} />
-                </button>
-                {openFaq === idx && (
-                  <p className="text-[10px] text-slate-450 mt-1.5 leading-relaxed animate-fade-in font-medium">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Column 3: Why Book With Us */}
+        <div className="space-y-4 md:col-span-1">
+          <h4 className="font-extrabold text-xs uppercase text-white tracking-wider">Why Book With Us</h4>
+          <ul className="space-y-2.5 text-[11px] font-bold text-slate-350">
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" /> Best Price Guarantee
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> 24/7 Global Concierge
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400" /> Transparent Billing
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" /> Verified Stays & Rides
+            </li>
+          </ul>
         </div>
 
         {/* Column 4: Contact Us & Channels */}
