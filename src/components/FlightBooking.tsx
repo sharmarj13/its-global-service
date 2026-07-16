@@ -212,10 +212,6 @@ export default function FlightBooking() {
           
           {/* From & To container */}
           <div className="flex-1 flex flex-col md:flex-row relative">
-            {/* Swap Button */}
-            <div onClick={swapCities} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 bg-white border border-slate-200 text-blue-500 p-1.5 rounded-full shadow-sm cursor-pointer hover:shadow-md transition-shadow">
-              <FaExchangeAlt className="text-[10px]" />
-            </div>
             
             {/* FROM */}
             <div 
@@ -223,8 +219,15 @@ export default function FlightBooking() {
               className={`flex-1 px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors rounded-tl-xl md:rounded-l-xl flex flex-col justify-center relative ${activePopup === "from" ? "bg-blue-50" : ""}`}
             >
               <div className="text-sm text-slate-500 mb-1 font-semibold">From</div>
-              <div className="text-3xl font-black text-slate-900 mb-1 line-clamp-1">{fromCity.city}</div>
-              <div className="text-xs text-slate-500 line-clamp-1 truncate">{fromCity.code}</div>
+              <div className="text-3xl font-black text-slate-900 mb-1 truncate">{fromCity.city}</div>
+              <div className="text-xs text-slate-500 truncate">{fromCity.code}</div>
+            </div>
+
+            {/* Swap Button */}
+            <div className="flex-none flex items-center justify-center z-10 px-1">
+              <div onClick={swapCities} className="bg-white border border-slate-200 text-blue-500 p-1.5 rounded-full shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+                <FaExchangeAlt className="text-[10px]" />
+              </div>
             </div>
 
             {/* TO */}
@@ -233,8 +236,8 @@ export default function FlightBooking() {
               className={`flex-1 px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors flex flex-col justify-center relative ${activePopup === "to" ? "bg-blue-50" : ""}`}
             >
               <div className="text-sm text-slate-500 mb-1 font-semibold">To</div>
-              <div className="text-3xl font-black text-slate-900 mb-1 line-clamp-1">{toCity.city}</div>
-              <div className="text-xs text-slate-500 line-clamp-1 truncate">{toCity.code}</div>
+              <div className="text-3xl font-black text-slate-900 mb-1 truncate">{toCity.city}</div>
+              <div className="text-xs text-slate-500 truncate">{toCity.code}</div>
             </div>
 
             {/* Location Popup (shared for From and To) */}
@@ -278,10 +281,10 @@ export default function FlightBooking() {
           </div>
 
           {/* Departure & Return container */}
-          <div className="flex-[1.1] flex flex-col md:flex-row relative">
+          <div className="flex-1 flex flex-col md:flex-row relative">
             <div 
               onClick={() => setActivePopup("departure")}
-              className={`flex-1 px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors border-r border-slate-200 flex flex-col justify-center relative ${activePopup === "departure" ? "bg-blue-50" : ""}`}
+              className={`flex-1 px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors flex flex-col justify-center relative ${activePopup === "departure" ? "bg-blue-50" : ""}`}
             >
               <div className="text-sm text-slate-500 mb-1 flex items-center gap-1 font-semibold">Departure <FaAngleDown className="text-[10px] text-blue-500" /></div>
               {depDateObj && (
@@ -328,7 +331,7 @@ export default function FlightBooking() {
         <div className="flex-[0.8] flex flex-col md:flex-row relative">
           <div 
             onClick={() => setActivePopup("travellers")}
-            className={`flex-[1.2] px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors border-r border-slate-200 flex flex-col justify-center relative ${activePopup === "travellers" ? "bg-blue-50" : ""}`}
+            className={`flex-[1.2] px-5 py-3 cursor-pointer hover:bg-slate-50 transition-colors flex flex-col justify-center relative ${activePopup === "travellers" ? "bg-blue-50" : ""}`}
           >
             <div className="text-sm text-slate-500 mb-1 flex items-center gap-1 font-semibold">Travellers <FaAngleDown className="text-[10px] text-blue-500" /></div>
             <div className="text-3xl font-black text-slate-900 mb-1 flex items-center gap-2">
@@ -582,8 +585,8 @@ export default function FlightBooking() {
         </div>
       </div>
 
-      {/* Floating Search Button */}
-      <div className="absolute -bottom-[65px] left-1/2 -translate-x-1/2 z-30">
+      {/* Search Button */}
+      <div className="flex justify-center mt-8 relative z-30">
         <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider">
           Search
         </button>

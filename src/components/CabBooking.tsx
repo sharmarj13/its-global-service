@@ -451,7 +451,8 @@ export default function CabBooking() {
         </div>
       )}
 
-      <div className="absolute -bottom-[65px] left-1/2 -translate-x-1/2 z-30">
+      {/* Search Button */}
+      <div className="flex justify-center mt-8 relative z-30">
         <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider">
           Search
         </button>

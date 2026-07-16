@@ -2,23 +2,7 @@
 
 import React, { useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaMapMarkedAlt, FaTags, FaHistory, FaBookmark, FaRegStar, FaHotel, FaPlane, FaCar, FaRobot } from "react-icons/fa";
-
-interface Package {
-  id: number;
-  name: string;
-  destination: string;
-  budget: string;
-  type?: string;
-  rating: string;
-  price: string;
-  overview: string;
-  inclusions: string[];
-  shadow?: string;
-  image?: string;
-  overlay?: string;
-  btnBg?: string;
-  btnBorder?: string;
-}
+import { Package } from "@/data/mockData";
 
 interface HotelViewProps {
   popularDests: any[];

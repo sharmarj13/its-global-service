@@ -51,8 +51,8 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-6 py-4">
-      <nav className="max-w-7xl mx-auto glass rounded-2xl px-6 py-4 flex items-center justify-between shadow-lg relative font-sans">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 transition-all duration-300">
+      <nav className="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-white/50 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-lg relative font-sans">
         
         {/* Logo */}
         <div className="flex items-center cursor-pointer group" onClick={() => { setActiveTab("hotel"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
