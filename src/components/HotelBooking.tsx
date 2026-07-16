@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { FaCheck, FaAngleDown, FaSearch, FaCalendarAlt, FaPaw, FaChartLine } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function HotelBooking() {
+  const router = useRouter();
   const [roomType, setRoomType] = useState("upto4");
   
   const [activePopup, setActivePopup] = useState<"city" | "checkin" | "checkout" | "guests" | "price" | null>(null);
@@ -57,6 +59,17 @@ export default function HotelBooking() {
 
   const checkInObj = formatDate(checkIn);
   const checkOutObj = formatDate(checkOut);
+
+  const handleSearch = () => {
+    const params = new URLSearchParams({
+      city: city.name,
+      checkIn,
+      checkOut,
+      rooms: rooms.toString(),
+      adults: adults.toString()
+    });
+    router.push(`/hotels/search?${params.toString()}`);
+  };
 
   const renderCalendar = () => {
     return (
@@ -346,7 +359,10 @@ export default function HotelBooking() {
 
       {/* Search Button */}
       <div className="flex justify-center mt-8 relative z-30">
-        <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider">
+        <button 
+          onClick={handleSearch}
+          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider"
+        >
           {roomType === "group" ? "Get Me Best Prices" : "Search"}
         </button>
       </div>
