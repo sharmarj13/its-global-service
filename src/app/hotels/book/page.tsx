@@ -40,7 +40,7 @@ export default function BookingReview() {
       />
 
       <div className="pt-24 pb-12">
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
           <h1 className="text-2xl font-black text-slate-900 mb-6">Review your Booking</h1>
 

@@ -65,25 +65,6 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1.5">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleItemClick(item)}
-                className={`flex items-center gap-2 px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all ${
-                  isActive ? "text-primary bg-primary/5 shadow-sm" : "text-slate-600 hover:text-primary hover:bg-slate-100"
-                }`}
-              >
-                <Icon className="text-sm" />
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
-        </div>
 
         {/* Actions (Notifications, Support, Profile) */}
         <div className="flex items-center gap-3">

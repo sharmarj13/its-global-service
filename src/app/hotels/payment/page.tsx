@@ -389,7 +389,7 @@ export default function PaymentPage() {
         </div>
       </header>
 
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 mt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
         <div className="flex flex-col lg:flex-row gap-6">
 
           {/* LEFT COLUMN */}
@@ -503,7 +503,7 @@ export default function PaymentPage() {
       </div>
 
       {/* Footer Security Badges */}
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 mt-12 pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-12 pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl">
             <FaLock />

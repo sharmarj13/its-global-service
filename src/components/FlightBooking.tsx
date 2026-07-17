@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { FaCheck, FaExchangeAlt, FaShieldAlt, FaRupeeSign, FaCalendarAlt, FaUser, FaAngleDown, FaPlane, FaSearch } from "react-icons/fa";
 
 export default function FlightBooking() {
+  const router = useRouter();
   const [tripType, setTripType] = useState("one-way");
   const [fareType, setFareType] = useState("regular");
 
@@ -587,7 +589,10 @@ export default function FlightBooking() {
 
       {/* Search Button */}
       <div className="flex justify-center mt-8 relative z-30">
-        <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider">
+        <button 
+          onClick={() => router.push("/flights/search")}
+          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider"
+        >
           Search
         </button>
       </div>
