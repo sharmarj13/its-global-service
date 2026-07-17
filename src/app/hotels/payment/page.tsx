@@ -377,12 +377,12 @@ export default function PaymentPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f2f4f7] font-sans pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans pb-16">
 
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-sm">
+      <header className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] border-b border-white/10 py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-md">
         <div className="flex items-center gap-2">
-          <img src="/image/ITS-Global-White.png" alt="Logo" className="h-8 object-contain filter invert" />
+          <img src="/image/ITS-Global-White.png" alt="Logo" className="h-8 object-contain" />
         </div>
         <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
           <FaShieldAlt /> SAFE & SECURED
@@ -396,7 +396,7 @@ export default function PaymentPage() {
           <div className="flex-1 space-y-4">
 
             {/* Hotel Summary */}
-            <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
               <div className="p-4 flex gap-4">
                 <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
                   <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=200&auto=format&fit=crop" className="w-full h-full object-cover" alt="Hotel" />
@@ -451,7 +451,7 @@ export default function PaymentPage() {
           <div className="w-full lg:w-[320px] flex-shrink-0 space-y-4">
 
             {/* Total Due Box */}
-            <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
               <div className="p-5 flex justify-between items-center border-b border-slate-100">
                 <h3 className="font-black text-xl text-slate-900">Total Due</h3>
                 <div className="font-black text-xl text-emerald-600">₹ 14,452</div>

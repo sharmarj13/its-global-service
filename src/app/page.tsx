@@ -64,7 +64,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen relative bg-[#f4f6fc]">
+    <main className="min-h-screen relative bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2]">
       <style>{`
         @keyframes scale-background {
           0%, 100% { transform: scale(1.02); }
@@ -98,14 +98,15 @@ export default function Home() {
             alt="Flights Background"
             className="w-full h-full object-cover animate-bg-zoom"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/30 to-[#f4f6fc]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#f4f6fc] to-transparent h-32 bottom-0 top-auto"></div>
         </div>
 
         {/* Hero Content (Tabs & Form) vertically centered */}
         <div className="relative z-20 flex-grow flex items-center justify-center w-full px-4 sm:px-6 mt-10">
           <div className="max-w-6xl w-full mx-auto">
             {/* Top Navigation Tabs */}
-            <div className="bg-white rounded-t-xl sm:rounded-full shadow-lg border border-slate-200/80 mx-auto w-11/12 max-w-lg flex overflow-x-auto no-scrollbar justify-between px-6 py-3 sm:px-10 relative z-10 mb-[-10px] items-center min-h-[80px]">
+            <div className="bg-white/95 backdrop-blur-md rounded-t-xl sm:rounded-full shadow-lg border border-white/50 mx-auto w-11/12 max-w-lg flex overflow-x-auto no-scrollbar justify-between px-6 py-3 sm:px-10 relative z-10 mb-[-10px] items-center min-h-[80px] animate-slide-up">
               {([
                 { id: "flight", icon: <FaPlane className="text-3xl" />, label: "Flights" },
                 { id: "hotel", icon: <FaHotel className="text-3xl" />, label: "Hotels" },
@@ -115,8 +116,8 @@ export default function Home() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex flex-col items-center justify-center gap-2 px-3 py-1.5 min-w-[80px] relative transition-all duration-300 ${activeTab === tab.id
-                    ? "text-primary border-b-2 border-primary"
-                    : "text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg border-b-2 border-transparent"
+                    ? "text-primary border-b-2 border-primary scale-105"
+                    : "text-slate-500 hover:text-primary hover:bg-slate-50 rounded-lg border-b-2 border-transparent hover:scale-105"
                     }`}
                 >
                   {tab.badge && (
@@ -138,7 +139,7 @@ export default function Home() {
             </div>
 
             {/* Main Booking Form Card */}
-            <div className="bg-white rounded-[24px] shadow-2xl border border-slate-200/80 p-5 md:p-8 relative pt-10">
+            <div className="bg-white/95 backdrop-blur-md rounded-[24px] shadow-2xl border border-white/50 p-5 md:p-8 relative pt-10 animate-slide-up hover:shadow-blue-900/10 transition-shadow duration-300">
               <div className="transition-all duration-300">
                 {activeTab === "hotel" && <HotelBooking />}
                 {activeTab === "flight" && <FlightBooking />}

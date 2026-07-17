@@ -468,7 +468,7 @@ export default function FlightSearch() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f2f4f7] font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans">
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -479,9 +479,11 @@ export default function FlightSearch() {
         onSupportClick={() => { }}
       />
 
-      <div className="pt-32 bg-[#0a1930] pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="bg-white rounded-lg p-2 flex flex-wrap lg:flex-nowrap items-center gap-2 text-slate-800 shadow-md relative">
+      <div className="pt-32 bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] pb-12 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="bg-white/95 backdrop-blur-md rounded-xl p-2 flex flex-wrap lg:flex-nowrap items-center gap-2 text-slate-800 shadow-2xl relative border border-white/50 animate-slide-up">
             
             {/* Trip Type */}
             <div className="relative shrink-0">
@@ -806,7 +808,7 @@ export default function FlightSearch() {
               </div>
             </div>
             
-            <button className="bg-[#008cff] hover:bg-blue-600 text-white font-black px-8 py-3.5 rounded-lg shadow uppercase tracking-widest transition-colors shrink-0 ml-2">
+            <button className="bg-gradient-to-r from-[#008cff] to-[#0052cc] hover:from-[#007add] hover:to-[#0047b3] text-white font-black px-8 py-3.5 rounded-lg shadow-lg shadow-blue-500/30 uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shrink-0 ml-2">
               Search
             </button>
           </div>
@@ -989,7 +991,7 @@ export default function FlightSearch() {
 
             {/* Flight Cards Loop */}
             {mockFlights.map((flight, idx) => (
-              <div key={flight.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow group">
+              <div key={flight.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 hover:-translate-y-1 transition-all duration-300 group">
                 <div className="p-5 flex items-center justify-between">
 
                   {/* Airline Info */}

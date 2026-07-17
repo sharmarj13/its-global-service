@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
@@ -9,7 +9,7 @@ import {
   FaTimes, FaAward, FaShieldAlt, FaAngleDown, FaSearch, FaArrowRight, FaMapMarkerAlt, FaCircle, FaCalendarAlt
 } from "react-icons/fa";
 import Navbar from "@/components/Navbar";
-export default function CabsSearchResults() {
+function CabsSearchResultsContent() {
   const searchParams = useSearchParams();
   const [tripType, setTripType] = useState("Outstation Round-Trip");
   const [fromCity, setFromCity] = useState("Mumbai");
@@ -44,7 +44,7 @@ export default function CabsSearchResults() {
   }, [searchParams]);
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] font-sans pb-10">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans pb-10">
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -56,9 +56,11 @@ export default function CabsSearchResults() {
       />
 
       {/* Search Modify Bar */}
-      <div className="pt-32 bg-[#0a1930] pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="bg-white rounded-xl p-2 flex flex-wrap lg:flex-nowrap items-center gap-2 text-slate-800 shadow-xl relative">
+      <div className="pt-32 bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] pb-12 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+          <div className="bg-white/95 backdrop-blur-md rounded-xl p-2 flex flex-wrap lg:flex-nowrap items-center gap-2 text-slate-800 shadow-2xl relative border border-white/50 animate-slide-up">
 
             <div className="relative shrink-0">
               <div
@@ -281,7 +283,7 @@ export default function CabsSearchResults() {
               </div>
             </div>
 
-            <button className="bg-[#008cff] hover:bg-blue-600 text-white font-bold text-sm px-8 py-3.5 rounded-lg uppercase shadow-sm transition-colors shrink-0 ml-2">
+            <button className="bg-gradient-to-r from-[#008cff] to-[#0052cc] hover:from-[#007add] hover:to-[#0047b3] text-white font-bold text-sm px-8 py-3.5 rounded-lg uppercase shadow-lg shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 shrink-0 ml-2">
               Search
             </button>
           </div>
@@ -514,7 +516,7 @@ export default function CabsSearchResults() {
           <div className="space-y-4">
 
             {/* Cab 1 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -550,7 +552,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 2 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -612,7 +614,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 3 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -655,7 +657,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 4 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -700,7 +702,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 5 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -745,7 +747,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 6 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1558227976-13a69dc97607?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -779,7 +781,7 @@ export default function CabsSearchResults() {
             </div>
 
             {/* Cab 7 */}
-            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-[#008cff]/40 hover:-translate-y-1 transition-all duration-300">
               <div className="p-4 flex gap-6 relative">
                 <div className="w-32 flex flex-col items-center">
                   <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=300&q=80" alt="car" className="w-24 h-16 object-cover rounded-md shadow-sm" />
@@ -893,5 +895,13 @@ export default function CabsSearchResults() {
       )}
 
     </div>
+  );
+}
+
+export default function CabsSearchResults() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F2F2F2] flex items-center justify-center">Loading...</div>}>
+      <CabsSearchResultsContent />
+    </Suspense>
   );
 }

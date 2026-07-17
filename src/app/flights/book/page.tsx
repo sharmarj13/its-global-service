@@ -11,7 +11,7 @@ export default function FlightBookPage() {
   const [activeSeatTab, setActiveSeatTab] = useState("Seats");
 
   return (
-    <div className="min-h-screen bg-[#e8f1f8] font-sans text-slate-800 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans text-slate-800 pb-20">
       <Navbar
         activeTab="flight"
         setActiveTab={() => { }}
@@ -23,8 +23,9 @@ export default function FlightBookPage() {
       />
 
       {/* Top Header */}
-      <div className="bg-[#0a1930] text-white pt-28 pb-4 px-4 sm:px-6 shadow-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] text-white pt-28 pb-4 px-4 sm:px-6 shadow-md sticky top-0 z-40 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div className="max-w-7xl mx-auto flex items-center justify-between relative z-10 animate-slide-up">
           <h1 className="text-xl font-black">Complete your booking</h1>
           <div className="hidden md:flex items-center gap-6 text-[10px] font-semibold text-slate-400">
             <span className={currentStep === 1 ? "text-white bg-slate-800/50 px-3 py-1 rounded cursor-pointer" : "cursor-pointer hover:text-white transition-colors"} onClick={() => setCurrentStep(1)}>Flight Summary</span>
@@ -44,7 +45,7 @@ export default function FlightBookPage() {
             <div className="space-y-6">
 
               {/* FLIGHT SUMMARY */}
-              <div className="bg-white rounded shadow-sm border border-slate-200 overflow-hidden">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <div className="bg-slate-50 border-b border-slate-200 px-5 py-3 flex justify-between items-center">
                   <div>
                     <h2 className="font-black text-lg text-slate-900">New Delhi → Bengaluru</h2>

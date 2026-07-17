@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaPlane, FaHotel, FaCar, FaUserCircle, FaSignOutAlt, FaBell, FaLifeRing, FaQuestionCircle, FaEnvelope, FaInfoCircle, FaTags, FaCompass } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaPlane, FaHotel, FaCar, FaUserCircle, FaSignOutAlt, FaBell, FaLifeRing, FaQuestionCircle, FaEnvelope, FaInfoCircle, FaTags, FaCompass, FaRegUser, FaHeart, FaSuitcase, FaStar, FaWallet, FaCreditCard, FaChevronDown } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   activeTab: string;
@@ -24,6 +25,20 @@ export default function Navbar({
 }: NavbarProps) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSupportMenu, setShowSupportMenu] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const router = useRouter();
+  const profileMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+        setShowProfileMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const navItems = [
     { id: "hotel", label: "Hotels", icon: FaHotel },
@@ -64,7 +79,6 @@ export default function Navbar({
             />
           </div>
         </div>
-
 
         {/* Actions (Notifications, Support, Profile) */}
         <div className="flex items-center gap-3">
@@ -158,18 +172,91 @@ export default function Navbar({
           {/* User profile / Login State */}
           <div>
             {isLoggedIn ? (
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
-                  <FaUserCircle className="text-lg text-primary" />
-                  <span className="text-xs font-bold text-slate-700">{username}</span>
-                </div>
-                <button
-                  onClick={onLogout}
-                  title="Log Out"
-                  className="p-2 bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 rounded-xl transition-all border border-slate-200"
+              <div className="relative" ref={profileMenuRef}>
+                <div 
+                  className="flex items-center gap-1.5 cursor-pointer hover:bg-slate-50 p-1 rounded-xl transition-colors"
+                  onClick={() => {
+                    setShowProfileMenu(!showProfileMenu);
+                    setShowNotifications(false);
+                    setShowSupportMenu(false);
+                  }}
                 >
-                  <FaSignOutAlt className="text-sm" />
-                </button>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center font-black text-sm shadow-sm border border-emerald-200">
+                    {username ? username.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase() : 'U'}
+                  </div>
+                  <FaChevronDown className={`text-[10px] text-slate-500 transition-transform ${showProfileMenu ? 'rotate-180' : ''}`} />
+                </div>
+
+                {showProfileMenu && (
+                  <div className="absolute right-0 mt-3 w-[320px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden animate-scale-in z-50">
+                    <div className="p-4 border-b border-slate-100 bg-slate-50">
+                      <div className="text-[11px] font-bold text-slate-500 mb-0.5">You are viewing your personal profile</div>
+                      <div className="text-xs font-black text-blue-600 truncate">{username ? username.toLowerCase().replace(' ', '') : 'user'}@gmail.com</div>
+                    </div>
+
+                    <div className="flex flex-col py-2">
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => { router.push('/profile'); setShowProfileMenu(false); }}>
+                        <FaRegUser className="text-slate-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-slate-800">My Profile</div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Manage your profile, traveller details, login details and password</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => { router.push('/wishlist'); setShowProfileMenu(false); }}>
+                        <FaHeart className="text-slate-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-slate-800">Wishlist</div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Save your favorite hotels and homestays. Share with loved ones and plan your trip together.</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                        <FaSuitcase className="text-slate-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-slate-800">My Trips</div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">See booking details, Print e-ticket, Cancel Booking, Modify Booking, Check Refund Status & more.</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                        <div className="relative">
+                          <FaStar className="text-slate-400 mt-0.5 text-lg" />
+                          <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div>
+                        <div>
+                          <div className="text-sm font-black text-slate-800">MMTBLACK</div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Explore MakeMyTrip's Loyalty Program</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                        <FaWallet className="text-slate-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-slate-800 flex items-center gap-2">
+                            My Wallet <span className="bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full shadow-sm">₹0</span>
+                          </div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Use your wallet money to avail even greater discounts</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                        <FaCreditCard className="text-slate-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-slate-800">Make a payment</div>
+                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Complete your pending payments here</div>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 items-start p-3 hover:bg-rose-50 cursor-pointer transition-colors border-t border-slate-100" onClick={onLogout}>
+                        <FaSignOutAlt className="text-rose-400 mt-0.5 text-lg" />
+                        <div>
+                          <div className="text-sm font-black text-rose-600">Logout</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <button

@@ -113,7 +113,7 @@ export default function HotelDetails({ params }: { params: { id: string } }) {
   const [activeTab, setActiveTab] = useState("hotel");
 
   return (
-    <div className="min-h-screen bg-[#f4f6fc]">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2]">
 
       <Navbar
         activeTab={activeTab}
@@ -126,9 +126,10 @@ export default function HotelDetails({ params }: { params: { id: string } }) {
       />
 
       {/* Header with dark background */}
-      <div className="bg-slate-900 pb-24">
+      <div className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] pb-24 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
         {/* Horizontal Search Bar inserted here */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-32 relative z-10">
           <HorizontalHotelSearch />
         </div>
       </div>
@@ -137,7 +138,7 @@ export default function HotelDetails({ params }: { params: { id: string } }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-12 pb-16">
 
         {/* Unified White Card for Header, Gallery, and Tabs */}
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden mb-6 relative">
+        <div className="bg-white rounded-xl shadow-xl shadow-slate-200/40 border border-slate-200 overflow-hidden mb-6 relative animate-slide-up">
 
           {/* Hotel Header Section */}
           <div className="p-6 flex flex-col md:flex-row justify-between items-start">
@@ -250,7 +251,7 @@ export default function HotelDetails({ params }: { params: { id: string } }) {
 
               <div className="flex flex-col">
                 {mockHotel.rooms.map(room => (
-                  <div key={room.id} className="flex flex-col lg:flex-row bg-white border-b border-slate-200 last:border-b-0">
+                  <div key={room.id} className="flex flex-col lg:flex-row bg-white border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors animate-slide-up">
 
                     {/* Room Info (Left Panel - Sticky on Desktop) */}
                     <div className="lg:w-1/3 p-4 border-b lg:border-b-0 lg:border-r border-slate-200 bg-slate-50/30 flex flex-col gap-3">

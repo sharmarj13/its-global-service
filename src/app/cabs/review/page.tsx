@@ -29,7 +29,7 @@ export default function CabReviewBooking() {
   const [showFareBreakup, setShowFareBreakup] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] font-sans pb-10 text-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans pb-10 text-slate-800">
 
       {/* Top Header */}
       <Navbar
@@ -43,9 +43,10 @@ export default function CabReviewBooking() {
       />
 
       {/* Review Booking Banner */}
-      <div className="bg-[#0f294d] text-white pt-32 pb-6 px-8 mb-6">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-[28px] font-bold">Review booking</h1>
+      <div className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] text-white pt-32 pb-12 px-8 mb-6 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div className="max-w-7xl mx-auto relative z-10 animate-slide-up">
+          <h1 className="text-[32px] font-black tracking-tight">Review booking</h1>
         </div>
       </div>
 
@@ -56,7 +57,7 @@ export default function CabReviewBooking() {
         <div className="flex-[0.72] flex flex-col gap-5">
 
           {/* Trip Details Card */}
-          <div className="bg-white rounded shadow-sm border border-[#e5e5e5] overflow-hidden">
+          <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-[#e5e5e5] overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
             <div className="p-5">
               <div className="text-[13px] text-slate-500 mb-2">Outstation Round Trip</div>
 

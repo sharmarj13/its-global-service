@@ -26,7 +26,7 @@ export default function BookingReview() {
   const totalAmount = basePrice + taxes + addonPrice + insurancePrice;
 
   return (
-    <div className="min-h-screen bg-[#f2f4f7] font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans">
 
       {/* Keeping our standard Navbar */}
       <Navbar
@@ -39,10 +39,15 @@ export default function BookingReview() {
         onSupportClick={() => { }}
       />
 
-      <div className="pt-24 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] text-white pt-32 pb-10 px-4 sm:px-6 shadow-md relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div className="max-w-7xl mx-auto relative z-10 animate-slide-up">
+          <h1 className="text-[28px] font-black tracking-tight">Review your Booking</h1>
+        </div>
+      </div>
 
-          <h1 className="text-2xl font-black text-slate-900 mb-6">Review your Booking</h1>
+      <div className="pt-8 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
           <div className="flex flex-col lg:flex-row gap-6">
 
@@ -50,7 +55,7 @@ export default function BookingReview() {
             <div className="flex-1 space-y-6">
 
               {/* Hotel Summary Card */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <div className="p-5 flex gap-4">
                   <div className="flex-1">
                     <h2 className="text-xl font-black text-slate-900">Radisson Blu Plaza Delhi Airport</h2>
@@ -87,7 +92,7 @@ export default function BookingReview() {
               </div>
 
               {/* Room Details & Cancellation */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 p-5 animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <span className="text-[10px] font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2 py-0.5 rounded-full mb-2 inline-block">Super Package</span>
@@ -143,7 +148,7 @@ export default function BookingReview() {
               </div>
 
               {/* Addons */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 p-5 animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <h3 className="text-lg font-black text-slate-900 mb-1">Addons</h3>
                 <div className="text-xs text-slate-500 font-semibold mb-4">Get additional benefits by paying marginal extra</div>
 
@@ -199,7 +204,7 @@ export default function BookingReview() {
               </div>
 
               {/* Important Information */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 p-5 animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <h3 className="text-lg font-black text-slate-900 mb-4">Important Information</h3>
 
                 <div className="border border-slate-200 rounded-lg p-3 mb-4">
@@ -231,7 +236,7 @@ export default function BookingReview() {
               </div>
 
               {/* Guest Details */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-5">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 p-5 animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <h3 className="text-lg font-black text-slate-900 mb-4">Guest Details</h3>
 
                 <div className="flex gap-4 mb-4">
@@ -295,7 +300,7 @@ export default function BookingReview() {
               </div>
 
               {/* Trip Secure */}
-              <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+              <div className="bg-white rounded-xl shadow-lg shadow-slate-200/40 border border-slate-200 overflow-hidden animate-slide-up hover:shadow-xl hover:border-blue-100 transition-all duration-300">
                 <div className="bg-emerald-50/50 p-4 flex gap-3 border-b border-emerald-100">
                   <div className="text-emerald-500 mt-1"><FaShieldAlt className="text-xl" /></div>
                   <div>

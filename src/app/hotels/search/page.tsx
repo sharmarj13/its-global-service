@@ -90,9 +90,10 @@ export default function SearchResults() {
   const [activeTab, setActiveTab] = useState("hotel");
 
   return (
-    <div className="min-h-screen bg-[#f4f6fc]">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2]">
       {/* Reusing Navbar - solid background since it's not over an image */}
-      <div className="bg-slate-900 pb-10">
+      <div className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] pb-12 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
         <Navbar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -190,7 +191,7 @@ export default function SearchResults() {
                 <div
                   key={hotel.id}
                   onClick={() => router.push(`/hotels/${hotel.id}`)}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 overflow-hidden flex flex-col sm:flex-row cursor-pointer group sm:h-[240px]"
+                  className="bg-white rounded-xl shadow-sm hover:shadow-xl hover:border-blue-100 hover:-translate-y-1 transition-all duration-300 border border-slate-200 overflow-hidden flex flex-col sm:flex-row cursor-pointer group sm:h-[240px] animate-slide-up"
                 >
                   {/* Image Section */}
                   <div className="relative w-full sm:w-[300px] h-[220px] sm:h-full flex-shrink-0 overflow-hidden bg-slate-100">
