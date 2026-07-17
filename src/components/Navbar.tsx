@@ -31,6 +31,7 @@ export default function Navbar({
   const [internalIsLoggedIn, setInternalIsLoggedIn] = useState(isLoggedIn);
   const [internalUsername, setInternalUsername] = useState<string | null>(username);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -60,11 +61,16 @@ export default function Navbar({
   };
 
   const handleLogoutClick = () => {
+    setShowLogoutConfirm(true);
+    setShowProfileMenu(false);
+  };
+
+  const confirmLogout = () => {
     setInternalIsLoggedIn(false);
     setInternalUsername(null);
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    setShowProfileMenu(false);
+    setShowLogoutConfirm(false);
     if (onLogout) onLogout();
   };
 
@@ -109,10 +115,10 @@ export default function Navbar({
       <nav className="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-white/50 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-lg relative font-sans">
 
         {/* Logo */}
-        <div className="flex items-center cursor-pointer group" onClick={() => { 
+        <div className="flex items-center cursor-pointer group" onClick={() => {
           if (pathname === '/') {
-            if (setActiveTab) setActiveTab("hotel"); 
-            window.scrollTo({ top: 0, behavior: "smooth" }); 
+            if (setActiveTab) setActiveTab("hotel");
+            window.scrollTo({ top: 0, behavior: "smooth" });
           } else {
             router.push('/');
           }
@@ -257,7 +263,7 @@ export default function Navbar({
                         </div>
                       </div>
 
-                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => { router.push('/trips'); setShowProfileMenu(false); }}>
                         <FaSuitcase className="text-slate-400 mt-0.5 text-lg" />
                         <div>
                           <div className="text-sm font-black text-slate-800">My Trips</div>
@@ -265,32 +271,13 @@ export default function Navbar({
                         </div>
                       </div>
 
-                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
-                        <div className="relative">
-                          <FaStar className="text-slate-400 mt-0.5 text-lg" />
-                          <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-white rounded-full"></div>
-                        </div>
-                        <div>
-                          <div className="text-sm font-black text-slate-800">MMTBLACK</div>
-                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Explore MakeMyTrip's Loyalty Program</div>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
+                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors" onClick={() => { router.push('/wallet'); setShowProfileMenu(false); }}>
                         <FaWallet className="text-slate-400 mt-0.5 text-lg" />
                         <div>
                           <div className="text-sm font-black text-slate-800 flex items-center gap-2">
                             My Wallet <span className="bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full shadow-sm">₹0</span>
                           </div>
                           <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Use your wallet money to avail even greater discounts</div>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 items-start p-3 hover:bg-slate-50 cursor-pointer transition-colors">
-                        <FaCreditCard className="text-slate-400 mt-0.5 text-lg" />
-                        <div>
-                          <div className="text-sm font-black text-slate-800">Make a payment</div>
-                          <div className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">Complete your pending payments here</div>
                         </div>
                       </div>
 
@@ -317,12 +304,36 @@ export default function Navbar({
         </div>
       </nav>
 
-      <AuthModal 
+      <AuthModal
         show={showAuthModal}
         onClose={() => setShowAuthModal(false)}
         onLoginSuccess={handleLoginSuccess}
         onGoogleLogin={() => handleLoginSuccess("google@user.com")}
       />
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in px-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden animate-scale-in p-6 text-center">
+            <h2 className="text-xl font-black text-slate-800 mb-2">Are you sure?</h2>
+            <p className="text-sm text-slate-600 font-medium mb-6">Do you really want to logout of your account?</p>
+            <div className="flex gap-4">
+              <button 
+                onClick={() => setShowLogoutConfirm(false)}
+                className="flex-1 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmLogout}
+                className="flex-1 px-4 py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-xl transition-colors shadow-lg shadow-rose-500/30"
+              >
+                Yes, Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
