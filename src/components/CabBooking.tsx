@@ -453,7 +453,20 @@ export default function CabBooking() {
 
       {/* Search Button */}
       <div className="flex justify-center mt-8 relative z-30">
-        <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider">
+        <button 
+          onClick={() => {
+            const params = new URLSearchParams({
+              tripType,
+              from: fromCity,
+              to: toCity,
+              pickupDate: departureDate,
+              dropDate: returnDate,
+              pickupTime
+            });
+            window.location.href = `/cabs/book?${params.toString()}`;
+          }}
+          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-xl font-black px-16 py-3 rounded-full shadow-xl shadow-blue-500/30 transition-all hover:scale-105 uppercase tracking-wider"
+        >
           Search
         </button>
       </div>
