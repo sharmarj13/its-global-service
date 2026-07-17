@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { FaPlane, FaHotel, FaCar, FaUserCircle, FaSignOutAlt, FaBell, FaLifeRing, FaQuestionCircle, FaEnvelope, FaInfoCircle, FaTags, FaCompass, FaRegUser, FaHeart, FaSuitcase, FaStar, FaWallet, FaCreditCard, FaChevronDown } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import AuthModal from "@/components/AuthModal";
 
 interface NavbarProps {
   activeTab: string;
@@ -26,8 +27,46 @@ export default function Navbar({
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSupportMenu, setShowSupportMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const [internalIsLoggedIn, setInternalIsLoggedIn] = useState(isLoggedIn);
+  const [internalUsername, setInternalUsername] = useState<string | null>(username);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
   const router = useRouter();
+  const pathname = usePathname();
   const profileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setInternalIsLoggedIn(isLoggedIn);
+    setInternalUsername(username);
+  }, [isLoggedIn, username]);
+
+  useEffect(() => {
+    const storedLogin = localStorage.getItem('isLoggedIn');
+    const storedUser = localStorage.getItem('username');
+    if (storedLogin === 'true') {
+      setInternalIsLoggedIn(true);
+      setInternalUsername(storedUser);
+    }
+  }, []);
+
+  const handleLoginSuccess = (email: string) => {
+    setInternalIsLoggedIn(true);
+    const user = email ? email.split("@")[0] : "Traveler";
+    setInternalUsername(user);
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', user);
+    setShowAuthModal(false);
+  };
+
+  const handleLogoutClick = () => {
+    setInternalIsLoggedIn(false);
+    setInternalUsername(null);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    setShowProfileMenu(false);
+    if (onLogout) onLogout();
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -68,9 +107,16 @@ export default function Navbar({
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 py-4 transition-all duration-300">
       <nav className="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-white/50 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between shadow-lg relative font-sans">
-        
+
         {/* Logo */}
-        <div className="flex items-center cursor-pointer group" onClick={() => { setActiveTab("hotel"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+        <div className="flex items-center cursor-pointer group" onClick={() => { 
+          if (pathname === '/') {
+            if (setActiveTab) setActiveTab("hotel"); 
+            window.scrollTo({ top: 0, behavior: "smooth" }); 
+          } else {
+            router.push('/');
+          }
+        }}>
           <div className="bg-[#191975] py-2 px-3.5 rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105">
             <img
               src="/image/ITS-Global-White.png"
@@ -82,7 +128,7 @@ export default function Navbar({
 
         {/* Actions (Notifications, Support, Profile) */}
         <div className="flex items-center gap-3">
-          
+
           {/* Notifications Bell */}
           <div className="relative">
             <button
@@ -140,7 +186,7 @@ export default function Navbar({
                     onSupportClick("about");
                     setShowSupportMenu(false);
                   }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-slate-650 font-bold transition-all"
+                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
                 >
                   <FaInfoCircle className="text-primary text-xs" />
                   <span>About Us</span>
@@ -150,7 +196,7 @@ export default function Navbar({
                     onSupportClick("faq");
                     setShowSupportMenu(false);
                   }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-slate-650 font-bold transition-all"
+                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
                 >
                   <FaQuestionCircle className="text-secondary text-xs" />
                   <span>FAQs</span>
@@ -160,7 +206,7 @@ export default function Navbar({
                     onSupportClick("contact");
                     setShowSupportMenu(false);
                   }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-slate-650 font-bold transition-all"
+                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
                 >
                   <FaEnvelope className="text-accent text-xs" />
                   <span>Contact Us</span>
@@ -171,9 +217,9 @@ export default function Navbar({
 
           {/* User profile / Login State */}
           <div>
-            {isLoggedIn ? (
+            {internalIsLoggedIn ? (
               <div className="relative" ref={profileMenuRef}>
-                <div 
+                <div
                   className="flex items-center gap-1.5 cursor-pointer hover:bg-slate-50 p-1 rounded-xl transition-colors"
                   onClick={() => {
                     setShowProfileMenu(!showProfileMenu);
@@ -182,7 +228,7 @@ export default function Navbar({
                   }}
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center font-black text-sm shadow-sm border border-emerald-200">
-                    {username ? username.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase() : 'U'}
+                    {internalUsername ? internalUsername.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'U'}
                   </div>
                   <FaChevronDown className={`text-[10px] text-slate-500 transition-transform ${showProfileMenu ? 'rotate-180' : ''}`} />
                 </div>
@@ -191,7 +237,7 @@ export default function Navbar({
                   <div className="absolute right-0 mt-3 w-[320px] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden animate-scale-in z-50">
                     <div className="p-4 border-b border-slate-100 bg-slate-50">
                       <div className="text-[11px] font-bold text-slate-500 mb-0.5">You are viewing your personal profile</div>
-                      <div className="text-xs font-black text-blue-600 truncate">{username ? username.toLowerCase().replace(' ', '') : 'user'}@gmail.com</div>
+                      <div className="text-xs font-black text-blue-600 truncate">{internalUsername ? internalUsername.toLowerCase().replace(' ', '') : 'user'}@gmail.com</div>
                     </div>
 
                     <div className="flex flex-col py-2">
@@ -248,7 +294,7 @@ export default function Navbar({
                         </div>
                       </div>
 
-                      <div className="flex gap-4 items-start p-3 hover:bg-rose-50 cursor-pointer transition-colors border-t border-slate-100" onClick={onLogout}>
+                      <div className="flex gap-4 items-start p-3 hover:bg-rose-50 cursor-pointer transition-colors border-t border-slate-100" onClick={handleLogoutClick}>
                         <FaSignOutAlt className="text-rose-400 mt-0.5 text-lg" />
                         <div>
                           <div className="text-sm font-black text-rose-600">Logout</div>
@@ -260,7 +306,7 @@ export default function Navbar({
               </div>
             ) : (
               <button
-                onClick={onLoginClick}
+                onClick={() => setShowAuthModal(true)}
                 className="bg-primary hover:bg-primary-hover text-white text-xs font-bold px-4 py-2 rounded-xl transition-all"
               >
                 Sign In
@@ -270,6 +316,13 @@ export default function Navbar({
 
         </div>
       </nav>
+
+      <AuthModal 
+        show={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onLoginSuccess={handleLoginSuccess}
+        onGoogleLogin={() => handleLoginSuccess("google@user.com")}
+      />
     </header>
   );
 }
