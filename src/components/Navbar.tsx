@@ -140,7 +140,6 @@ export default function Navbar({
             <button
               onClick={() => {
                 setShowNotifications(!showNotifications);
-                setShowSupportMenu(false);
               }}
               className="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-all border border-slate-200 relative"
             >
@@ -200,7 +199,6 @@ export default function Navbar({
                   onClick={() => {
                     setShowProfileMenu(!showProfileMenu);
                     setShowNotifications(false);
-                    setShowSupportMenu(false);
                   }}
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center font-black text-sm shadow-sm border border-emerald-200">

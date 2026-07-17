@@ -102,7 +102,7 @@ export default function AuthModal({ show, onClose, onLoginSuccess, onGoogleLogin
                         placeholder="you@example.com"
                         value={authEmail}
                         onChange={(e) => setAuthEmail(e.target.value)}
-                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm outline-none transition-all"
+                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm text-slate-900 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -126,7 +126,7 @@ export default function AuthModal({ show, onClose, onLoginSuccess, onGoogleLogin
                         placeholder="••••••••"
                         value={authPassword}
                         onChange={(e) => setAuthPassword(e.target.value)}
-                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm outline-none transition-all"
+                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm text-slate-900 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export default function AuthModal({ show, onClose, onLoginSuccess, onGoogleLogin
                         placeholder="you@example.com"
                         value={authEmail}
                         onChange={(e) => setAuthEmail(e.target.value)}
-                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm outline-none transition-all"
+                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm text-slate-900 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export default function AuthModal({ show, onClose, onLoginSuccess, onGoogleLogin
                         placeholder="Create password"
                         value={authPassword}
                         onChange={(e) => setAuthPassword(e.target.value)}
-                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm outline-none transition-all"
+                        className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary pl-9 pr-3 py-2.5 rounded-lg text-sm text-slate-900 outline-none transition-all"
                       />
                     </div>
                   </div>
@@ -236,7 +236,7 @@ export default function AuthModal({ show, onClose, onLoginSuccess, onGoogleLogin
                   <input
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary px-3 py-2.5 rounded-lg text-sm outline-none transition-all"
+                    className="w-full border border-slate-300 focus:border-primary focus:ring-1 focus:ring-primary px-3 py-2.5 rounded-lg text-sm text-slate-900 outline-none transition-all"
                   />
                 </div>
 

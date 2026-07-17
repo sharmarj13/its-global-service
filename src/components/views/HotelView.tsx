@@ -41,43 +41,42 @@ export default function HotelView({
   };
 
   return (
-    <div className="space-y-12 animate-fade-in pt-4">
+    <div className="space-y-10 animate-fade-in pt-4">
       {/* Hotel Offers */}
       <section className="max-w-5xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-slate-200/80 pb-4">
           <div>
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">Exclusive Hotel Offers</h2>
-            <p className="text-sm text-slate-500 mt-1">Best deals on premium stays across the globe.</p>
+            <h2 className="text-xl font-black text-slate-900">Exclusive Hotel Offers</h2>
+            <p className="text-xs text-slate-500 mt-0.5">Best deals on premium stays across the globe.</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div 
             onClick={() => router.push('/hotels/search')}
-            className="relative bg-white border border-slate-200 rounded-3xl p-8 flex items-center justify-between cursor-pointer hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+            className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800 rounded-2xl p-6 text-white flex items-center justify-between cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden group"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -mr-10 -mt-10" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse" />
             <div className="relative z-10">
-              <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full mb-4 inline-block">Domestic Hotels</span>
-              <h3 className="text-3xl font-black text-slate-800 mb-2">Up to 40% OFF</h3>
-              <p className="text-sm text-slate-500 font-medium">On your first booking with ITS Global.</p>
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-3 inline-block shadow-sm">Domestic Hotels</span>
+              <h3 className="text-2xl font-black mb-1">Up to 40% OFF</h3>
+              <p className="text-xs text-blue-100 font-medium">On your first booking with ITS Global.</p>
             </div>
-            <div className="relative z-10 w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-              <FaHotel className="text-3xl animate-float-1" />
+            <div className="relative z-10 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+              <FaHotel className="text-3xl text-white animate-float-1" />
             </div>
           </div>
-
           <div 
             onClick={() => router.push('/hotels/search')}
-            className="relative bg-white border border-slate-200 rounded-3xl p-8 flex items-center justify-between cursor-pointer hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+            className="relative bg-gradient-to-br from-emerald-500 via-teal-600 to-emerald-700 rounded-2xl p-6 text-white flex items-center justify-between cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden group"
           >
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -ml-10 -mb-10" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse" />
             <div className="relative z-10">
-              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full mb-4 inline-block">International Stays</span>
-              <h3 className="text-3xl font-black text-slate-800 mb-2">Flat ₹5,000 OFF</h3>
-              <p className="text-sm text-slate-500 font-medium">Use code ITSGLOBAL on checkout.</p>
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-3 inline-block shadow-sm">International Stays</span>
+              <h3 className="text-2xl font-black mb-1">Flat ₹5,000 OFF</h3>
+              <p className="text-xs text-emerald-100 font-medium">Use code ITSGLOBAL on checkout.</p>
             </div>
-            <div className="relative z-10 w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-              <FaMapMarkedAlt className="text-3xl animate-float-2" />
+            <div className="relative z-10 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+              <FaMapMarkedAlt className="text-3xl text-white animate-float-2" />
             </div>
           </div>
         </div>
