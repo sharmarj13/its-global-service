@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { FaPlane, FaHotel, FaCar, FaUserCircle, FaSignOutAlt, FaBell, FaLifeRing, FaQuestionCircle, FaEnvelope, FaInfoCircle, FaTags, FaCompass, FaRegUser, FaHeart, FaSuitcase, FaStar, FaWallet, FaCreditCard, FaChevronDown } from "react-icons/fa";
+import { FaPlane, FaHotel, FaCar, FaUserCircle, FaSignOutAlt, FaBell, FaLifeRing, FaQuestionCircle, FaEnvelope, FaInfoCircle, FaTag, FaTags, FaCompass, FaRegUser, FaHeart, FaSuitcase, FaStar, FaWallet, FaCreditCard, FaChevronDown } from "react-icons/fa";
 import { useRouter, usePathname } from "next/navigation";
 import AuthModal from "@/components/AuthModal";
 
@@ -25,7 +25,7 @@ export default function Navbar({
   onSupportClick,
 }: NavbarProps) {
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showSupportMenu, setShowSupportMenu] = useState(false);
+
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const [internalIsLoggedIn, setInternalIsLoggedIn] = useState(isLoggedIn);
@@ -169,56 +169,26 @@ export default function Navbar({
             )}
           </div>
 
-          {/* Support Dropdown Menu */}
+          {/* Offers Link */}
+          <button
+            onClick={() => router.push('/offers')}
+            className="flex items-center gap-1.5 px-3 py-2 text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-black transition-all"
+          >
+            <FaTag className="text-sm" />
+            <span className="hidden sm:inline">Offers</span>
+          </button>
+
+          {/* Support Link */}
           <div className="relative">
             <button
-              onClick={() => {
-                setShowSupportMenu(!showSupportMenu);
-                setShowNotifications(false);
-              }}
+              onClick={() => router.push('/support')}
               className="flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl text-xs font-semibold border border-slate-200 transition-all"
             >
               <FaLifeRing className="text-sm" />
               <span className="hidden sm:inline">Support</span>
             </button>
 
-            {showSupportMenu && (
-              <div className="absolute right-0 mt-3 w-48 bg-white rounded-2xl shadow-xl border border-slate-200 p-3.5 space-y-1.5 animate-scale-in">
-                <span className="text-[9px] font-black uppercase text-slate-400 tracking-wider block px-2 pb-1 border-b border-slate-100">
-                  Help Center
-                </span>
-                <button
-                  onClick={() => {
-                    onSupportClick("about");
-                    setShowSupportMenu(false);
-                  }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
-                >
-                  <FaInfoCircle className="text-primary text-xs" />
-                  <span>About Us</span>
-                </button>
-                <button
-                  onClick={() => {
-                    onSupportClick("faq");
-                    setShowSupportMenu(false);
-                  }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
-                >
-                  <FaQuestionCircle className="text-secondary text-xs" />
-                  <span>FAQs</span>
-                </button>
-                <button
-                  onClick={() => {
-                    onSupportClick("contact");
-                    setShowSupportMenu(false);
-                  }}
-                  className="w-full text-left flex items-center gap-2 p-2 hover:bg-slate-50 rounded-lg text-xs text-black font-bold transition-all"
-                >
-                  <FaEnvelope className="text-accent text-xs" />
-                  <span>Contact Us</span>
-                </button>
-              </div>
-            )}
+
           </div>
 
           {/* User profile / Login State */}

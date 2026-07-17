@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { FaCar, FaCalendarAlt, FaCheckCircle, FaChevronRight, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function CabView() {
+  const router = useRouter();
   const [currentCabImgIndex, setCurrentCabImgIndex] = useState(0);
   const cabImages = [
     "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=300&q=80",
@@ -49,36 +51,43 @@ export default function CabView() {
   ];
 
   return (
-    <div className="space-y-10 animate-fade-in pt-4">
+    <div className="space-y-12 animate-fade-in pt-4">
       {/* Cab Offers */}
       <section className="max-w-5xl mx-auto space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-200/80 pb-4">
+        <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-black text-slate-900">Exclusive Cab Offers</h2>
-            <p className="text-xs text-slate-500 mt-0.5">Save big on your intercity travel and airport transfers.</p>
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight">Exclusive Cab Offers</h2>
+            <p className="text-sm text-slate-500 mt-1">Save big on your intercity travel and airport transfers.</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="relative bg-gradient-to-br from-amber-500 via-orange-500 to-red-600 rounded-2xl p-6 text-white flex items-center justify-between cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-            <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div 
+            onClick={() => router.push('/cabs/search')}
+            className="relative bg-white border border-slate-200 rounded-3xl p-8 flex items-center justify-between cursor-pointer hover:shadow-xl hover:border-amber-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-3xl -mr-10 -mt-10" />
             <div className="relative z-10">
-              <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-3 inline-block shadow-sm">Airport Transfers</span>
-              <h3 className="text-2xl font-black mb-1">Flat 15% OFF</h3>
-              <p className="text-xs text-amber-100 font-medium">Valid on pre-booked airport pickups & drops.</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full mb-4 inline-block">Airport Transfers</span>
+              <h3 className="text-3xl font-black text-slate-800 mb-2">Flat 15% OFF</h3>
+              <p className="text-sm text-slate-500 font-medium">Valid on pre-booked airport pickups & drops.</p>
             </div>
-            <div className="relative z-10 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
-              <FaCar className="text-3xl text-white animate-float-1" />
+            <div className="relative z-10 w-20 h-20 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <FaCar className="text-3xl animate-float-1" />
             </div>
           </div>
-          <div className="relative bg-gradient-to-br from-emerald-500 via-teal-600 to-emerald-800 rounded-2xl p-6 text-white flex items-center justify-between cursor-pointer hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse" />
+
+          <div 
+            onClick={() => router.push('/cabs/search')}
+            className="relative bg-white border border-slate-200 rounded-3xl p-8 flex items-center justify-between cursor-pointer hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 overflow-hidden group"
+          >
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -ml-10 -mb-10" />
             <div className="relative z-10">
-              <span className="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-3 inline-block shadow-sm">Outstation Rides</span>
-              <h3 className="text-2xl font-black mb-1">Up to ₹500 Cashback</h3>
-              <p className="text-xs text-emerald-100 font-medium">On your first outstation round-trip.</p>
+              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full mb-4 inline-block">Outstation Rides</span>
+              <h3 className="text-3xl font-black text-slate-800 mb-2">Up to ₹500 Cashback</h3>
+              <p className="text-sm text-slate-500 font-medium">On your first outstation round-trip.</p>
             </div>
-            <div className="relative z-10 w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
-              <FaMapMarkerAlt className="text-3xl text-white animate-float-2" />
+            <div className="relative z-10 w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <FaMapMarkerAlt className="text-3xl animate-float-2" />
             </div>
           </div>
         </div>
@@ -99,7 +108,11 @@ export default function CabView() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
           {cabFleets.map((fleet) => (
-            <div key={fleet.id} className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative group">
+            <div 
+              key={fleet.id} 
+              onClick={() => router.push('/cabs/search')}
+              className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative group cursor-pointer"
+            >
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <span className="text-[10px] text-emerald-600 font-bold uppercase block">{fleet.ideal}</span>
@@ -142,7 +155,11 @@ export default function CabView() {
             { from: "Delhi", to: "Jaipur", price: "₹ 3,300" },
             { from: "Pune", to: "Mahabaleshwar", price: "₹ 2,800" },
           ].map((route, i) => (
-            <div key={i} className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative overflow-hidden">
+            <div 
+              key={i} 
+              onClick={() => router.push('/cabs/search')}
+              className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
               <div className="relative z-10">
                 <div className="text-sm font-bold text-slate-800 group-hover:text-primary transition-colors flex items-center">

@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Seamless travel booking portal for premium hotel bookings, flight selections, and cab rides.",
 };
 
+import AIChatWidget from "@/components/AIChatWidget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,8 +20,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased min-h-screen bg-[#0f0a1e] text-slate-100 selection:bg-purple-500 selection:text-white">
+      <body className="antialiased min-h-screen bg-[#0f0a1e] text-slate-100 selection:bg-purple-500 selection:text-white relative">
         {children}
+        <AIChatWidget />
       </body>
     </html>
   );

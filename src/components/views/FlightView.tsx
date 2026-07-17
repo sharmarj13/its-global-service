@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { FaPlane, FaCalendarAlt, FaCheckCircle, FaChevronRight } from "react-icons/fa";
 
 interface FlightViewProps {
@@ -8,6 +9,8 @@ interface FlightViewProps {
 }
 
 export default function FlightView({ userMode }: FlightViewProps) {
+  const router = useRouter();
+  
   const flightDeals = [
     {
       id: 1,
@@ -39,25 +42,27 @@ export default function FlightView({ userMode }: FlightViewProps) {
   ];
 
   return (
-    <div className="space-y-10 animate-fade-in pt-4">
+    <div className="space-y-12 animate-fade-in pt-4">
       
       {/* Flight Deals Section */}
-      <section className="max-w-5xl mx-auto bg-gradient-to-br from-indigo-50/40 via-blue-50/20 to-slate-50 border border-slate-200/80 p-6 md:p-8 rounded-3xl space-y-6 shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -ml-20 -mt-20 pointer-events-none" />
-        
-        <div className="flex items-center justify-between border-b border-slate-200 pb-4 relative z-10">
+      <section className="max-w-5xl mx-auto space-y-6">
+        <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
               <FaPlane className="text-cyan-500" /> Exclusive Flight Deals
             </h2>
-            <p className="text-[11px] text-slate-500 mt-0.5">Grab the best offers on domestic and international flights.</p>
+            <p className="text-sm text-slate-500 mt-1">Grab the best offers on domestic and international flights.</p>
           </div>
-          <button className="text-xs font-bold text-primary hover:underline">View All</button>
+          <button className="text-sm font-bold text-primary hover:underline">View All</button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
           {flightDeals.map((deal) => (
-            <div key={deal.id} className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative group">
+            <div 
+              key={deal.id} 
+              onClick={() => router.push('/flights/search')}
+              className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-cyan-200 transition-all duration-300 relative group cursor-pointer"
+            >
               <div className="absolute -top-3 right-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                 {deal.tag}
               </div>
@@ -104,7 +109,11 @@ export default function FlightView({ userMode }: FlightViewProps) {
             { from: "Chennai", to: "Singapore", price: "₹ 15,300" },
             { from: "Kolkata", to: "Bangkok", price: "₹ 12,800" },
           ].map((route, i) => (
-            <div key={i} className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative overflow-hidden">
+            <div 
+              key={i} 
+              onClick={() => router.push('/flights/search')}
+              className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl hover:border-primary/50 hover:shadow-lg transition-all duration-300 cursor-pointer group hover:-translate-y-1 relative overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
               <div className="relative z-10">
                 <div className="text-sm font-bold text-slate-800 group-hover:text-primary transition-colors flex items-center">
