@@ -10,8 +10,21 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        blue: {
+          50: "#e0e0f5",
+          100: "#b8b8eb",
+          200: "#8686d9",
+          300: "#5e5ec2",
+          400: "#4040a8",
+          500: "#2a2a8f",
+          600: "#191975", // user's primary color
+          700: "#13135a", // hover color
+          800: "#0d0d3f",
+          900: "#070726",
+          950: "#030312",
+        },
         primary: {
-          DEFAULT: "#191975", // midnight blue
+          DEFAULT: "#191975",
           hover: "#13135a",
         },
         secondary: {
