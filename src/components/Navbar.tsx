@@ -168,6 +168,15 @@ export default function Navbar({
             )}
           </div>
 
+          {/* Itinerary Link */}
+          <button
+            onClick={() => router.push('/itinerary/create')}
+            className="flex items-center gap-1.5 px-3 py-2 text-indigo-600 hover:bg-indigo-50 rounded-xl text-xs font-black transition-all"
+          >
+            <FaCompass className="text-sm" />
+            <span className="hidden sm:inline">AI Itinerary</span>
+          </button>
+
           {/* Offers Link */}
           <button
             onClick={() => router.push('/offers')}

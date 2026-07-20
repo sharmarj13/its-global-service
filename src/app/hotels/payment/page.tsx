@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { FaShieldAlt, FaChevronDown, FaWallet, FaUserCircle, FaChevronRight, FaArrowLeft, FaCreditCard, FaBuilding, FaMobileAlt, FaInfoCircle, FaSearch, FaCheckCircle, FaLock } from "react-icons/fa";
+import Navbar from "@/components/Navbar";
 
 export default function PaymentPage() {
   const [activeView, setActiveView] = useState<"menu" | "card" | "netbanking" | "upi" | "emi" | "wallets">("menu");
+  const [activeTab, setActiveTab] = useState("hotel");
 
   const renderPaymentMenu = () => (
     <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
@@ -377,17 +379,17 @@ export default function PaymentPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans pb-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f1f8] via-[#f4f7fb] to-[#F2F2F2] font-sans pt-24 pb-16">
 
-      {/* Header */}
-      <header className="bg-gradient-to-r from-[#0a1930] via-[#0f294d] to-[#0a1930] border-b border-white/10 py-4 px-6 flex justify-between items-center sticky top-0 z-50 shadow-md">
-        <div className="flex items-center gap-2">
-          <img src="/image/ITS-Global-White.png" alt="Logo" className="h-8 object-contain" />
-        </div>
-        <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
-          <FaShieldAlt /> SAFE & SECURED
-        </div>
-      </header>
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isLoggedIn={false}
+        username=""
+        onLoginClick={() => { }}
+        onLogout={() => { }}
+        onSupportClick={() => { }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
         <div className="flex flex-col lg:flex-row gap-6">

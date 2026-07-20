@@ -60,7 +60,10 @@ export default function AIChatWidget() {
               <div class="font-bold text-rose-700 mb-1 flex items-center gap-1">🏨 Top Hotel Stay</div>
               <div>Taj Exotica Resort & Spa (South Goa)</div>
             </div>
-            <button class="mt-2 w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">Book This Package</button>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <button class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">Book Package</button>
+              <a href="/itinerary/create" class="w-full bg-indigo-600 text-white text-center font-bold py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center">Plan Itinerary</a>
+            </div>
           </div>
         `;
       } else if (userMsg.toLowerCase().includes("hi") || userMsg.toLowerCase().includes("hello")) {

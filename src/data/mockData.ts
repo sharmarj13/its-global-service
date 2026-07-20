@@ -189,3 +189,69 @@ export const featuredPackages = [
     btnBorder: "border-amber-500/20",
   },
 ];
+
+export interface Activity {
+  time: string;
+  title: string;
+  description: string;
+  type: "travel" | "activity" | "dining" | "culture" | "accommodation";
+}
+
+export interface DayItinerary {
+  day: number;
+  date?: string;
+  theme: string;
+  activities: Activity[];
+}
+
+export interface Itinerary {
+  id: string;
+  destination: string;
+  days: number;
+  budget: string;
+  preferences: string[];
+  imageUrl: string;
+  timeline: DayItinerary[];
+}
+
+export const mockItineraries: Record<string, Itinerary> = {
+  "goa-123": {
+    id: "goa-123",
+    destination: "Goa, India",
+    days: 3,
+    budget: "Mid-range",
+    preferences: ["Beaches", "Culture", "Relaxation"],
+    imageUrl: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80",
+    timeline: [
+      {
+        day: 1,
+        theme: "Arrival & North Goa Beaches",
+        activities: [
+          { time: "10:00 AM", title: "Arrive at Dabolim Airport", description: "Pick up your pre-booked cab and head to your resort in North Goa.", type: "travel" },
+          { time: "12:00 PM", title: "Check-in & Freshen Up", description: "Arrive at Taj Fort Aguada Resort. Relax and unpack.", type: "accommodation" },
+          { time: "01:30 PM", title: "Lunch at Thalassa", description: "Enjoy authentic Greek food with a beautiful view of the Arabian Sea.", type: "dining" },
+          { time: "04:00 PM", title: "Baga Beach Stroll", description: "Walk along the famous Baga beach, enjoy water sports, or simply relax by the shacks.", type: "activity" }
+        ]
+      },
+      {
+        day: 2,
+        theme: "Cultural Heritage & Spice Plantations",
+        activities: [
+          { time: "09:00 AM", title: "Breakfast at Resort", description: "Enjoy a hearty buffet breakfast.", type: "dining" },
+          { time: "10:30 AM", title: "Basilica of Bom Jesus", description: "Visit the UNESCO World Heritage site in Old Goa.", type: "culture" },
+          { time: "01:00 PM", title: "Spice Plantation Tour", description: "Explore the Sahakari Spice Farm and enjoy a traditional Goan lunch on a banana leaf.", type: "culture" },
+          { time: "05:30 PM", title: "Sunset Cruise on Mandovi River", description: "Relax on a cruise with live music and dancing.", type: "activity" }
+        ]
+      },
+      {
+        day: 3,
+        theme: "South Goa Serenity & Departure",
+        activities: [
+          { time: "09:30 AM", title: "Palolem Beach Visit", description: "Drive down south to experience the serene, crescent-shaped Palolem Beach.", type: "activity" },
+          { time: "12:30 PM", title: "Lunch at Dropadi", description: "Enjoy fresh seafood right on the beach.", type: "dining" },
+          { time: "03:00 PM", title: "Head to Airport", description: "Check out and travel back to the airport for your flight home.", type: "travel" }
+        ]
+      }
+    ]
+  }
+};
